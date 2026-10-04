@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>夏日贴纸 · 心动盖章</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- 启动加载层：悬浮参考图 1 + 进度条 -->
+<div id="loader" class="loader">
+  <div class="loader__chibi">
+    <img src="assets/loading-chibi.png" alt="夏日贴纸">
+  </div>
+  <div class="loader__bar">
+    <div id="loaderFill" class="loader__fill"></div>
+  </div>
+</div>
+<div id="app" class="app">
+
+  <!-- 舞台：视频 + 贴纸层 + 目标层 -->
+  <div id="stage" class="stage">
+    <video id="idleVideo" class="layer video-layer" playsinline muted loop preload="auto">
+      <source src="assets/video/idle.mp4" type="video/mp4">
+    </video>
+    <video id="speakingVideo" class="layer video-layer is-hidden" playsinline muted loop preload="auto">
+      <source src="assets/video/speaking.mp4" type="video/mp4">
+    </video>
+
+    <!-- 目标点层 -->
+    <div id="targetLayer" class="layer target-layer"></div>
+
+    <!-- 已贴贴纸层 -->
+    <div id="stickerLayer" class="layer sticker-layer"></div>
+
+    <!-- 拖拽中的贴纸（跟随指针） -->
+    <div id="ghost" class="ghost" aria-hidden="true"><img id="ghostImg" alt=""></div>
+
+    <!-- 好感度条（参考图7：右侧竖条 + 心形） -->
+    <div id="affection" class="affection">
+      <div class="affection__title">好感度</div>
+      <div class="affection__track">
+        <div id="affectionFill" class="affection__fill"></div>
+        <div id="affectionSpark" class="affection__spark"></div>
+      </div>
+    </div>
+
+    <!-- 台词气泡（贴纸栏上方，淡入淡出） -->
+    <div id="dialogue" class="dialogue" aria-live="polite">
+      <div id="dialogueText" class="dialogue__text"></div>
+      <div id="dialogueNarr" class="dialogue__narr"></div>
+    </div>
+
+    <!-- 完成提示（画面正中） -->
+    <div id="finish" class="finish">
+      <div class="finish__star">✦</div>
+      <div class="finish__text">今日贴纸任务完成</div>
+      <div class="finish__star">✦</div>
+    </div>
+
+    <!-- BGM 控件（右上角，纯图标） -->
+    <div id="bgm" class="bgm" role="button" aria-label="背景音乐开关">
+      <div class="bgm__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg>
+      </div>
+      <div class="bgm__bars" id="bgmBars"><span></span><span></span><span></span><span></span></div>
+    </div>
+  </div>
+
+  <!-- 底部贴纸栏 -->
+  <div id="dock" class="dock">
+    <div id="dockHint" class="dock__hint">把贴纸拖到人物身上的圆点上吧 ♪</div>
+    <div id="dockRow" class="dock__row"></div>
+  </div>
+
+  <!-- 点击模式下的提示浮标 -->
+  <div id="pickHint" class="pick-hint is-hidden">点一下目标圆圈放下贴纸</div>
+</div>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
